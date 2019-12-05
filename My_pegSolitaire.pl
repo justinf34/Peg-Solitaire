@@ -24,12 +24,104 @@ fullBoard([0,1,2,3,4,5,6,
 % Board States
 board(crossbow, [31,32,34,35,41,42,43,44,45,53], [3]).
 board(longbow, [20,30,31,41,33,43,35,45,26,36,52,53,54,63], [3]).
+board(not_quite_dead, [2,3,4,12,14,20,21,22,23,24,25,26,30,32,35,36,40,41,42,43,44,45,46,52,54,62,64], [33]).
 
 
-% Pagoda
-pagoda
+%----- Pagodas -----%
+% Simple
+pagoda(simple,2,0).
+pagoda(simple,3,0).
+pagoda(simple,4,0).
+pagoda(simple,12,0).
+pagoda(simple,13,1).
+pagoda(simple,14,0).
+pagoda(simple,20,0).
+pagoda(simple,21,0).
+pagoda(simple,22,0).
+pagoda(simple,23,0).
+pagoda(simple,24,0).
+pagoda(simple,25,0).
+pagoda(simple,26,0).
+pagoda(simple,30,0).
+pagoda(simple,31,1).
+pagoda(simple,32,0).
+pagoda(simple,33,1).
+pagoda(simple,34,0).
+pagoda(simple,35,1).
+pagoda(simple,36,0).
+pagoda(simple,40,0).
+pagoda(simple,41,0).
+pagoda(simple,42,0).
+pagoda(simple,43,0).
+pagoda(simple,44,0).
+pagoda(simple,45,0).
+pagoda(simple,46,0).
+pagoda(simple,52,0).
+pagoda(simple,53,1).
+pagoda(simple,54,0).
+pagoda(simple,62,0).
+pagoda(simple,63,0).
+pagoda(simple,64,0).
+
+%Asymmetric
+pagoda(asym,2,0).
+pagoda(asym,3,0).
+pagoda(asym,4,0).
+pagoda(asym,12,0).
+pagoda(asym,13,1).
+pagoda(asym,14,0).
+pagoda(asym,20,-1).
+pagoda(asym,21,1).
+pagoda(asym,22,0).
+pagoda(asym,23,1).
+pagoda(asym,24,0).
+pagoda(asym,25,1).
+pagoda(asym,26,-1).
+pagoda(asym,30,0).
+pagoda(asym,31,2).
+pagoda(asym,32,0).
+pagoda(asym,33,2).
+pagoda(asym,34,0).
+pagoda(asym,35,2).
+pagoda(asym,36,0).
+pagoda(asym,40,-1).
+pagoda(asym,41,1).
+pagoda(asym,42,0).
+pagoda(asym,43,1).
+pagoda(asym,44,0).
+pagoda(asym,45,1).
+pagoda(asym,46,-1).
+pagoda(asym,52,0).
+pagoda(asym,53,1).
+pagoda(asym,54,0).
+pagoda(asym,62,0).
+pagoda(asym,63,0).
+pagoda(asym,64,0).
 
 
+wgt(_,[],0).
+wgt(P, [Pos|Rest], Wgt) :-
+    (pagoda(P,Pos,Wgt);
+    PWgt = 0), !,
+    wgt(P, Rest, WgtRest),
+    Wgt is WgtRest + PWgt.
+
+goal_wgt(crossbow, simple, 1).
+
+
+
+% % Independence check
+% independent(_, []).
+% independent(Mv, [H|T]) :-
+%     overlap(Mv,H), !.
+% independent(Mv, [H|T]) :-
+%     lexorder(Mv,H),
+%     independent(Mv, T).
+
+% overlap((S1,E1), (S2,E2)) :-
+%     jump(S1, J1, E2),
+%     jump(S2,J2,E2),
+%     (S1)
 
 
 % Boarder check

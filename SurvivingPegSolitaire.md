@@ -43,7 +43,7 @@ of the goal position, you can stop the search.
 **Pagoda Function**
 * linear cost
 ```prolog
-pagoda(simple 13,1).
+pagoda(simple,13,1).
 pagoda(simple,31,1).
 pagoda(simple, 33,1).
 pagoda(simple,35,1).
@@ -54,7 +54,7 @@ pagoda(simple,43,1).
 
 wgt(_,[],0).
 wgt(P, [Pos|Rest], Wgt) :-
-    (pagoda(P,Pos, PWgt));
+    (pagoda(P,Pos, PWgt);
     PWgt = 0), !,
     wgt(P, Rest, WgtRest),
     Wgt is WgtRest + PWgt.

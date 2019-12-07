@@ -63,15 +63,15 @@ wgt(P, [Pos|Rest], Wgt) :-
 goal_wgt(full, simple, 1).
 goal_wgt(crossbow, simple, 0).
 
-solitaire_steps(G,B,_,[]) :- % G = name of game, _ = history(starts empty), []=                                path to goal
+solitaire_steps(G,B,_,[]) :- % G = name of game, _ = history(starts empty), []=path to goal
     final_board(G,B).
 
 solitaire_steps(G,B,Hist,[Mv|Moves]) :-
     make_jump(B, Start, Jumped, End, NewBoard),
     Mv = (Start, End),
     independence_check(Mv, Hist),
-    findall((P,W), (member(P,[simple,...]),
-    wgt(P, NewBoard,W)), Wgts), % the list of pagoda functions
+    findall((P,W), (member(P,[<names of pagoda functions>]),
+    wgt(P, NewBoard,W)), Wgts),
     check_wgts(G,Wgts),
     solitaire_steps(G, NewBoard, [Mv,Hist], Moves).
 % ^ Reduces combinatronics
